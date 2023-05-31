@@ -119,5 +119,5 @@ radioButtons.forEach((radioButton) =>
   radioButton.addEventListener("change", selectCalculateMethod)
 );
 
-// add ebentListener to the Calc button's 'click' event
+// add eventListener to the Calc button's 'click' event
 calcButton.addEventListener("click", calculate);

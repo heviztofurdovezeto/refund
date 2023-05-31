@@ -1,11 +1,6 @@
 :root {
-    --red: rgb(255, 0, 0);
-    --blue: rgb(0, 0, 255);
+    --blue: rgb(0, 75, 175);
     --green: rgb(0, 255, 0);
-    --yellow-pastell: rgb(241, 241, 146);
-    --green-light: rgb(162, 255, 56);
-    --silver: rgb(192, 192, 192);
-    --silver-dark: rgb(150, 150, 150);
     --dark: rgb(100, 100, 100);
     --light: rgb(200, 200, 200);
 }
@@ -51,14 +46,6 @@ footer {
     min-height: 2rem;
 }
 
-/* input:read-only {
-    border: none;
-}
-
-input:read-only::placeholder {
-    visibility: hidden;
-} */
-
 .buttonimg {
     width: 100%;
     border-radius: 5px;
@@ -85,13 +72,10 @@ input:read-only::placeholder {
     opacity: 1;
 }
 
-/* Ettől világítós zöld a kép körüli keret, ha kiveszed kommentből */
-/* .radiobtn:checked + label > .buttonimg {
-    border: 2px solid;
-    border-color: var(--green-light);
-    border-radius: 2px;
-} */
-
 .hidden {
     visibility: hidden;
+}
+
+.result {
+    color: var(--blue);
 }
