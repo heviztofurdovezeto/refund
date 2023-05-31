@@ -1,0 +1,97 @@
+:root {
+    --red: rgb(255, 0, 0);
+    --blue: rgb(0, 0, 255);
+    --green: rgb(0, 255, 0);
+    --yellow-pastell: rgb(241, 241, 146);
+    --green-light: rgb(162, 255, 56);
+    --silver: rgb(192, 192, 192);
+    --silver-dark: rgb(150, 150, 150);
+    --dark: rgb(100, 100, 100);
+    --light: rgb(200, 200, 200);
+}
+
+* {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+}
+
+header,
+footer {
+    min-height: 3.5rem;
+    background-color: var(--dark);
+    color: var(--light);
+    padding-top: .35rem;
+    padding-left: 7.25rem;
+}
+
+footer {
+    padding-top: .8rem;
+}
+
+.main {
+    min-height: 83.6vh;
+    border-top: .5rem;
+    border-bottom: .5rem;
+
+}
+
+.selectiondiv {
+    min-height: 10rem;
+}
+
+.timesentence {
+    min-height: 2rem;
+}
+
+/* input:read-only {
+    border: none;
+}
+
+input:read-only::placeholder {
+    visibility: hidden;
+} */
+
+.buttonimg {
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.buttonimg:hover {
+    opacity: 0.85;
+}
+
+.radiobtn {
+    margin-left: 15px;
+    visibility: hidden;
+}
+
+.radiobtn:checked+label {
+    border: 3px solid;
+    border-radius: 5px;
+    border-color: var(--green);
+}
+
+.radiobtn:checked+label>img {
+    opacity: 1;
+}
+
+/* Ettől világítós zöld a kép körüli keret, ha kiveszed kommentből */
+/* .radiobtn:checked + label > .buttonimg {
+    border: 2px solid;
+    border-color: var(--green-light);
+    border-radius: 2px;
+} */
+
+.hidden {
+    visibility: hidden;
+}
