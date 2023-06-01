@@ -79,3 +79,22 @@ footer {
 .result {
     color: var(--blue);
 }
+
+.getback__check {
+    color: var(--blue);
+}
+
+
+.getback__pay {
+    border: 2px solid;
+    border-color: var(--blue);
+    padding: 0.5rem 3rem;
+}
+
+.getback__pay--amount {
+    font-size: 1.5rem;
+}
+
+small {
+    opacity: .35;
+}
