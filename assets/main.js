@@ -2,13 +2,16 @@
 
 const today = new Date();
 
-import { seasonTicket } from "../assets/config.js";
+import {
+  seasonTicket
+} from "../assets/config.js";
 
 const passTypeSelector = document.querySelector(".typeselect");
 const dateSelector = document.querySelector(".date");
 const radioButtons = document.querySelectorAll(".radiobtn");
 const timeSelectors = document.querySelectorAll(".timeselect");
 const calcButton = document.querySelector(".calculate");
+const modal = document.getElementById("myModal");
 
 const basedatas = {
   passtype: "",
@@ -20,9 +23,9 @@ const basedatas = {
 // Generate a date number for querying
 const queryDateFunc = (date) => {
   let queryDate;
-  date.getMonth() >= 3
-    ? (queryDate = `${date.getFullYear()}0401`)
-    : (queryDate = `${date.getFullYear() - 1}0401`);
+  date.getMonth() >= 3 ?
+    (queryDate = `${date.getFullYear()}0401`) :
+    (queryDate = `${date.getFullYear() - 1}0401`);
   basedatas.querydate = queryDate;
 
   return;
@@ -41,15 +44,15 @@ const roundToFive = (price) => {
   let interPrice = price.toString();
   let lastDigit = parseInt(interPrice[interPrice.length - 1]);
 
-  lastDigit > 0 && lastDigit <= 2.49
-    ? (price = price - lastDigit)
-    : lastDigit > 2.5 && lastDigit <= 4.99
-    ? (price = price + (5 - lastDigit))
-    : lastDigit > 5 && lastDigit <= 7.49
-    ? (price = price + (5 - lastDigit))
-    : lastDigit > 7.5 && lastDigit <= 9.99
-    ? (price = price + (5 - (lastDigit - 5)))
-    : (price = price);
+  lastDigit > 0 && lastDigit <= 2.49 ?
+    (price = price - lastDigit) :
+    lastDigit > 2.5 && lastDigit <= 4.99 ?
+    (price = price + (5 - lastDigit)) :
+    lastDigit > 5 && lastDigit <= 7.49 ?
+    (price = price + (5 - lastDigit)) :
+    lastDigit > 7.5 && lastDigit <= 9.99 ?
+    (price = price + (5 - (lastDigit - 5))) :
+    (price = price);
 
   return price;
 };
@@ -75,34 +78,46 @@ const calculate = () => {
   let amount;
 
   basedatas.typeselect === "left"
-    ? (amount = Math.round(
-        (actualPrice / basedatas.passtype) * basedatas.minutes
-      ))
-    : (amount = Math.round(
-        (actualPrice / basedatas.passtype) *
-          (basedatas.passtype - basedatas.minutes)
-      ));
+    ?
+    (amount = Math.round(
+      (actualPrice / basedatas.passtype) * basedatas.minutes
+    )) :
+    (amount = Math.round(
+      (actualPrice / basedatas.passtype) *
+      (basedatas.passtype - basedatas.minutes)
+    ));
   
   // call roundToFive function w/ amount variable
   let roundedPrice = roundToFive(amount);
-  
-  // show result,
-  // maybe it would be nicer if pop ups a modal!
-  document.querySelector(
-    ".roundedgetback"
-  ).innerHTML = `${roundedPrice.toLocaleString("hu-HU", {
+
+  const modalData = {
+    title: ``,
+    getback: ``,
+    deposit: ``,
+  };
+
+  modalData.title = `Visszatérítendő összeg`;
+  modalData.getback = `${roundedPrice.toLocaleString("hu-HU", {
     style: "currency",
     currency: "HUF",
-  })} és ${deposit.toLocaleString("hu-HU", {
+  })}-ot`;
+  modalData.deposit = `Visszatérítendő továbbá ${deposit.toLocaleString("hu-HU", {
     style: "currency",
     currency: "HUF",
   })} kaució!`;
 
-  // remove the 'hidden' class from the result div in index.html
-  document.querySelector(".hidden").classList.remove("hidden");
+  // Add content to the modal befor showing it
+  document.querySelector(".modal-title").innerHTML = modalData.title;
+  document.querySelector(".getback__pay--amount").innerHTML = modalData.getback;
+  document.querySelector(".getback__deposit").innerHTML = modalData.deposit;
+
+  showModal();
 };
 
-// Selecting the method which way to calculate the refundable amount of money
+const showModal = () => {
+  modal.addEventListener("shown.bs.modal", function (event) { });
+};
+
 const selectCalculateMethod = (event) => {
   timeSelectors.forEach((item) => item.removeAttribute("readonly"));
 
@@ -113,11 +128,17 @@ const selectCalculateMethod = (event) => {
   tw.innerHTML = `${event.target.id}`;
 };
 
-
-// add eventListener's to each radio buttons for the 'change' event
+// Adding eventListenrs to the radio buttons
 radioButtons.forEach((radioButton) =>
   radioButton.addEventListener("change", selectCalculateMethod)
 );
 
-// add eventListener to the Calc button's 'click' event
+// Init calculating by clicking the "Számol" button
 calcButton.addEventListener("click", calculate);
+
+// Relode the page by closing the Modal
+document
+  .getElementById("myModal")
+  .addEventListener("hide.bs.modal", function (event) {
+    location.reload(true);
+  });
