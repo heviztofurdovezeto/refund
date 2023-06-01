@@ -55,19 +55,56 @@
               <input type="number" class="form-control hours timeselect" id="hours" placeholder="óra" readonly max="22">
             </div>
             <div class="col-6">
-              <input type="number" class="form-control minutes timeselect" id="minutes" placeholder="perc" readonly max="59">
+              <input type="number" class="form-control minutes timeselect" id="minutes" placeholder="perc" readonly
+                max="59">
             </div>
           </div>
         </div>
       </form>
-      <button id="calculate" class="mt-3 btn btn-outline-primary calculate">Számol</button>
-      <div class="result mt-5 hidden">
-        <h3>Kerekítve visszatérítendő: <span class="roundedgetback"></span></h3>
-      </div>
+      <button id="calculate" class="mt-3 btn btn-outline-primary calculate" data-bs-toggle="modal"
+        data-bs-target="#myModal">Számol</button>
     </div>
 
   </div>
 
+  <!-- Modal -->
+  <div class="modal-div">
+
+    <!-- A Modal -->
+    <div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+
+          <!-- Modal fejléce -->
+          <div class="modal-header">
+            <h4 class="modal-title"></h4>
+          </div>
+
+          <!-- Modal tartalma -->
+          <div class="modal-body">
+            <div class="getback__check">
+              <h5 class="getback__check--title">Kiadási pénztárbizonylat</h5>
+              <div class="getback__pay">
+                <div class="getback__pay--header"><small>Pénztár fizessen az alábbiak szerint</small></div>
+                <div class="customernamediv"><small>. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+                    . . . . . . . . . . . . . . . . . . . -nak</small></div>
+                <div class="getback__pay--amount mt-2"></div>
+              </div>
+            </div>
+            <div class="getback__deposit mt-3"></div>
+          </div>
+
+          <!-- Modal lábléce -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-warning text-white" data-bs-dismiss="modal">Bezár(ható, a kiadási
+              pénztárbizonylat kitöltve!)</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
   <footer>
     <div class="copyright">&copy; Hetesi Roland - 2023</div>
   </footer>
